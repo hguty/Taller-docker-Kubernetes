@@ -3,7 +3,8 @@
 # 1. Instalar desde los repositorios
 
 # Actualizar repositorios
-´sudo apt-get update´
+`sudo apt-get update`
+`code`
 
 # Instalar dependencias
 
