@@ -3,15 +3,15 @@
 # 1. Instalar desde los repositorios
 
 # Actualizar repositorios
-sudo apt-get update
+´sudo apt-get update´
 
 # Instalar dependencias
 
-sudo apt-get install \
+´sudo apt-get install \
     ca-certificates \
     curl \
     gnupg \
-    lsb-release
+    lsb-release´
 
 # Añadir el GPG Key de docker
 
