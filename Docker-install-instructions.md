@@ -20,24 +20,24 @@ sudo apt-get install \\ \
 
 # Agregar un repositorio
 
-`echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+echo \\ \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \\ \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 
 # Actualizar nuevamente repositorios
-sudo apt-get update
+`sudo apt-get update`
 
 # Instalar Docker engine
 
-sudo apt-get install docker-ce docker-ce-cli containerd.io
+`sudo apt-get install docker-ce docker-ce-cli containerd.io`
 
 # Habilitar docker 
-sudo systemctl enable docker
+`sudo systemctl enable docker`
 
 # Agregamos el usuario al grupo de docker
-whoami
-usermod -aG docker <usuario>
+`whoami`
+`usermod -aG docker <usuario>`
 
 # probar docker
-docker run hello-worl
+`docker run hello-worl`
