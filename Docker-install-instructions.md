@@ -8,11 +8,11 @@
 
 # Instalar dependencias
 
-`sudo apt-get install \\
-    ca-certificates \\
-    curl \\
-    gnupg \\
-    lsb-release`
+sudo apt-get install \\ \
+    ca-certificates \\ \
+    curl \\ \
+    gnupg \\ \
+    lsb-release
 
 # Añadir el GPG Key de docker
 
