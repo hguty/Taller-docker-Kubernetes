@@ -40,14 +40,14 @@ docker run <nombre_imagen>
 `docker run -d -name nginx-pruebas nginx`
 
 ## Crear un contenedor y exponer un puerto
-`docker run --name some-nginx -d -p 8080:80 nginx`
+`docker run --name nginx-pruebas -d -p 8080:80 nginx`
 
 ## Parar, iniciar y reiniciar un contenedor
-`docker stop some-nginx`
+`docker stop nginx-pruebas`
 
-`docker start some-nginx`
+`docker start nginx-pruebas`
 
-`docker restart some-nginx`
+`docker restart nginx-pruebas`
 
 
 
