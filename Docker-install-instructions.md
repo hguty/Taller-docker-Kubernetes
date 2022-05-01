@@ -36,8 +36,8 @@ echo \\ \
 `sudo systemctl enable docker`
 
 # Agregamos el usuario al grupo de docker
-`whoami`
-`usermod -aG docker <usuario>`
+`whoami` \
+`sudo usermod -aG docker <usuario>`
 
 # probar docker
-`docker run hello-worl`
+`docker run hello-world`

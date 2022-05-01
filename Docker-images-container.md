@@ -37,7 +37,7 @@ docker run <nombre_imagen>
 `docker ps -a`
 
 ## Crear un contenedor y darle un nombre
-`docker run -d -name nginx-pruebas nginx`
+`docker run -d --name nginx-pruebas nginx`
 
 ## Crear un contenedor y exponer un puerto
 `docker run --name nginx-pruebas -d -p 8080:80 nginx`
