@@ -41,3 +41,6 @@ la opción -a copia directorio
 
 `docker cp -a apache:/usr/local/apache2/icons /home/hector/`
 
+Ver logs del docker
+
+`docker logs -f <docker>`

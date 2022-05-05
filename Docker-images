@@ -19,6 +19,16 @@ VOLUME (Manejo de volumenes)
 CMD (comando que inicia los servicios que vamos a exponer)
 
 ## Creando el nuestra primera imagen
+Empezamos creando un archivo con nombre Dockerfile (doc de texto)
+
+FROM centos
+RUN yum install httpd -y
+
+##Construir la imagen a partir del Dockerfile
+`docker build <nombre de la image:tag>` 
+
+
+
 
 
 

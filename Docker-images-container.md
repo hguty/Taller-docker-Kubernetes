@@ -16,7 +16,7 @@ Se debe buscar la versión requerida e identificar su tag
 `docker pull nginx:1.21.6`
 
 ###  Ver las imágenes descargadas en el docker host
-`docker volumes`
+`docker images`
 
 ### Documentación de las imágenes pública
 Cada imágen publicada en el docker hub tiene la documentación necesario para crear y administrar el contenedor, el autor de la imagen es quíen administra la documentación de la página.
@@ -51,6 +51,12 @@ docker run <nombre_imagen>
 
 ## Eliminar contenedores
 `docker rm -f nginx-pruebas`
+la opción -f fuerza a eliminar un docker incluso si está ejecutando
+
+Cuando veamos volumenes tendremos la opción  -fv para borrar el contenedor junto con el volumen atachado
+
+`docker rm -fv nginx-pruebas`
+
 
 # Recursos de un contenedor
 El contenedor al ejecutarse en un docker host consummirá los recursos de este. Por lo que si no hay un control sobre los recursos podría afectar el rendimiento o la disponibilidad del sistema
