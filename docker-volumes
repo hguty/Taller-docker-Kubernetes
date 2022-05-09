@@ -29,6 +29,7 @@ Esta imagen se crea pero no hay datos persistentes
 
 # Volumes anonymous
 Se puede dejar que docker seleccion la ubicación del volumen, solo debemos dar el parámetro del path dentro del contenedor
+Este directorio se crea con un nombre randomico en el directorio por defecto de volumenes de docker
 
 `docker run --name mysql -v /var/lib/mysql -e MYSQL_ROOT_PASSWORD=Datos.123 -d mysql:latest`
 
@@ -42,14 +43,35 @@ para eliminar el docker junto con el volumen:
 Aca se specifica un nombre específico para el volumen y la ubicación local
 
 ### Crear un volumen nombrado
+Creo un volumen con un nombre especifico y lo al crear el contenedor lo atacho con su nombre.
+Este volumen, con el nombre, se crea en el directorio por defecto de volumenes de docker 
 `docker volume create <nombre_volumen> `
 
 Para atacharlo a un contenedor especificamos su nombre
 `docker run --name mysql -v nombre_volumen:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Datos.123 -d mysql:latest`
+
+Eliminar el volumen
+`docker volume rm <nombre_volumen>`
 
 ##La ubicación de los volumenes
 Para identificar la ubicación de los volumenes anonymos y nombrados debemos ver el path root de docker
 `docker info`
 
 la podemos encontrar en /var/lib/docker/volume
+
+## Volume Dangling
+Volumenes danglig son volumenes desreferenciados, es decir que su contenedores dejaron de apuntar 
+Para eliminar estos volumenes ejecutamos la siguiente instrucción:
+### Visualizar volumenes dangling 
+`docker volume ls -f dangling=true`
+
+### Visualizar solo los ids de volumenes dangling
+`docker volume ls -f dangling=true -q`
+
+### Eliminar solo los solumenes danglig
+`docker volume ls -f dangling=true -q | xargs docker volume rm`
+
+
+
+
 
