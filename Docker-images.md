@@ -1,4 +1,4 @@
-## Como crear nuestra propia imagen: DockerFiles
+# Dockerfile: Como crear nuestra propia imagen
 Hemos visto como ejecutar imágenes ya creadas y administrar estos contenedores, ahora vamos a ver como podemos crear nuestras propias imágenes para nuestras aplicaciones.
 Lo primero que debemos saber es que una imagen es un empaquetado de todos los componentes
 que requiere un aplicación para correr (sistema operativo, dll, código fuente). 
@@ -7,7 +7,7 @@ En docker las imágenes se construyen a partir de uno archivo de texto llamados 
 
 El formato del archivo Dockerfile es:
 INSTRUCCIÓN argumento
-##Comentarios empiezan con #
+### Comentarios empiezan con #
 
 Instrucciones más utilizadas:
 FROM <imagen> (Es siempre la primera instrucción del dockerfile porque especifica a partir de que imagen voy a crear mi imagen)
@@ -20,7 +20,7 @@ VOLUME (Manejo de volumenes)
 CMD (comando que inicia los servicios que vamos a exponer)
 ENTRYPOINT 
 
-##Estructura básica de un dockerfile
+## Estructura básica de un dockerfile
 
 1era SECCIÓN -> La primera instrucción siempre será importar la imagen base sobre la cual construiremos nuestra personalización
 FROM <IMAGEN>  
@@ -33,11 +33,12 @@ CMD <COMANDO> | ENTRYPOINT <COMANDO>
 
 
 
-## Creando el nuestra primera imagen
+### Creando el nuestra primera imagen
 Empezamos creando un archivo con nombre Dockerfile (doc de texto)
+
 `nano Dockerfile`
 
-!Dockerfile
+Editamos en contenido del archivo:
 
 ~~~ 
 FROM ubuntu
@@ -46,8 +47,10 @@ RUN apt -y install nginx
 ~~~
 
 ##Construir la imagen a partir del Dockerfile
+docker build es el comando para construir imágenes a partir de un docker file. 
+
 `docker build .` 
-docker build es el comando para construir imágenes a partir de un docker file
+
 El punto representa el directorio donde estoy y en donde está el DockerFile, puede estar un path o una url
 
 `docker image ls`
@@ -64,7 +67,7 @@ Por eso al intentar ejecutarla va a dar un exit. Esto es porque un contenedor no
 Si el servicio web falla y se interrumpe entonces el contenedor hace un exit. 
 
 
-##CMD
+## CMD
 Entonces quien define el proceso o tarea que va a correr en contenedor? 
 Eso se especifica en el docker file con la instrucción CMD. Un contenedor debe tener un CMD para arrancar en primer plano.
 Formas de ejecutar CMD
@@ -79,31 +82,38 @@ Editar el Dockerfile y añadir la siguiente linea
 
 
 
-##Etiquetado de imágenes
+## Etiquetado de imágenes
 Nos ayuda a dar un nombre y a versionar nuestra imágenes (control de versiones)
+
  `docker tag <nombre_actual_imagen> <muevo_tag>`
 
 Es una buena práctica ir etiquetando las imágenes con latest para la última versión de nuestra aplicación. Así sabemos cuando está correiendo la última versión
 
-##ENTRYPOINT
+## ENTRYPOINT
 Su funcionamiento es similar a CMD, es decir me sirve para ejecutar un proceso, tarea o servicio en primer plano y que ejecute junto al contenedor. Con la diferencia es que espera un parámetro como argumento para completar su ejecución. Este parámetro puede ser ingresado junto a la linea de comandos cuando ejecuto el docker o en el Docker file usando CMD
 
 
 
 
 Crear un Dockerfile a partir de la imagen de Ubuntu y mandar a dorimir por 10 segundos el contenedor
-`FROM ubuntu`
-`CMD sleep 10`
+~~~
+FROM ubuntu
+CMD sleep 10
+~~~
 
 Modificar el Dockerfile para que mediante la linea de comando especificar la cantidad de segundos enviar a dormir el contenedor
-`FROM ubuntu`
-`ENTRYPOINT ["sleep"]`
+~~~
+FROM ubuntu
+ENTRYPOINT ["sleep"]
+~~~
 
 Modificar el Dockerfile para que mediante la linea de comando especificar la cantidad de segundos enviar a dormir el contenedor pero que si no especifico la cantidad de segundos por defecto se configure en 10.
-`FROM ubuntu`
-`ENTRYPOINT ["sleep"]`
-`CMD ["5"]`
 
+~~~
+FROM ubuntu
+ENTRYPOINT ["sleep"]
+CMD ["5"]
+~~~
 
 ## COMANDO RUN 
 

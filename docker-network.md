@@ -30,20 +30,22 @@ En Docker vamos a encontrar algunos drivers o tipos de redes:
 - none. No tiene conexión de red
   
 ## Creación de redes
-#Comando para crear una red con un nombre y el driver por defecto: 
+### Comando para crear una red con un nombre y el driver por defecto: 
 
 `docker network create test_red`
 
 ### Comando para crear una red con un nombre y especifico el tipo de red o driver necesario: 
+
 `docker network create -d bridge --subnet 10.11.0.0/24 --gateway 10.11.0.1 test_red`
 
 ### Comando para ejecutar un contenedor en la red creada
 
 Crear 3 contenedores, 2 de ellos a una red creada y el otro a una segunda red creada
+
 `docker run --network test_red -d --name test1 -it centos`
 
 `docker run -dit ubuntu /bin/bash`
-`
+
 `docker run --network mired -d --name linux2 -it ubuntu /bin/bash`
 
 

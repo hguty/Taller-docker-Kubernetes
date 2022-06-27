@@ -1,4 +1,5 @@
 
+
 # Imágenes
 ## Docker Hub
 Es el repositorio central de docker para guardar imágenes públicas
@@ -9,7 +10,7 @@ En docker hub encontraremos las imágenes de los fabricantes que pueden ser util
 cada image contine su **tag** que es un etiquetado de la versión de la imágen.
 Se debe buscar la versión requerida e identificar su tag
 
-## Descargar una imagen
+### Descargar una imagen
 `docker pull nginx`
 
 ### Tag de imágenes
