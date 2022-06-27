@@ -88,6 +88,9 @@ Es una buena práctica ir etiquetando las imágenes con latest para la última v
 ##ENTRYPOINT
 Su funcionamiento es similar a CMD, es decir me sirve para ejecutar un proceso, tarea o servicio en primer plano y que ejecute junto al contenedor. Con la diferencia es que espera un parámetro como argumento para completar su ejecución. Este parámetro puede ser ingresado junto a la linea de comandos cuando ejecuto el docker o en el Docker file usando CMD
 
+
+
+
 Crear un Dockerfile a partir de la imagen de Ubuntu y mandar a dorimir por 10 segundos el contenedor
 `FROM ubuntu`
 `CMD sleep 10`
