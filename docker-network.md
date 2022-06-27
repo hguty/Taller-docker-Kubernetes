@@ -2,12 +2,14 @@
 La conectividad de los contenedores es una parte fundamental para su funcionamiento. Su abstracción de las redes lo hace sencillo y muy poderoso. 
 Los contenedores y los servicios no requieren saber que están ejecutandose en docker ni contra que otros servidores o clientes deben comunicarse, unicamente necesitan un tipo de red y una ip para funcionar.   
 
-##Funcionamiento de la red en los contenedores de docker
+## Funcionamiento de la red en los contenedores de docker
 Cuando instalamos docker en el sistema operativo, se cren una nueva interface de red (con algún direccionamiento).
 En una terminal digitemos: `ifconfig` o `ip a`
-Veremos una interface con nombre docker, todos los conetenedores creados  por defecto usan esta red para comunicarse con el host. 
-`docker run -d nginx`
+Veremos una interface con nombre docker, todos los conetenedores creados  por defecto usan esta red para comunicarse con el host.
+
+`docker run -d nginx` 
 `docker inspect nginx`
+
 Validar los parametros de red del contenedor y comparar el direccionamiento ip con la interface de red del SO
 
 Cuando creo un contenedor por defecto se crean con el tipo de red Bridge
@@ -29,6 +31,7 @@ En Docker vamos a encontrar algunos drivers o tipos de redes:
   
 ## Creación de redes
 #Comando para crear una red con un nombre y el driver por defecto: 
+
 `docker network create test_red`
 
 ### Comando para crear una red con un nombre y especifico el tipo de red o driver necesario: 
