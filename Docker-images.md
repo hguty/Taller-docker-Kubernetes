@@ -37,11 +37,13 @@ CMD <COMANDO> | ENTRYPOINT <COMANDO>
 Empezamos creando un archivo con nombre Dockerfile (doc de texto)
 `nano Dockerfile`
 
+!Dockerfile
+
+~~~ 
 FROM ubuntu
 RUN apt update -y
 RUN apt -y install nginx
-
-
+~~~
 
 ##Construir la imagen a partir del Dockerfile
 `docker build .` 
