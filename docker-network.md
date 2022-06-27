@@ -26,15 +26,15 @@ En Docker vamos a encontrar algunos drivers o tipos de redes:
 - mscvlan. es muy similar a ipvlan con la diferencia que cada cotenedor se le asigna una mac adres diferente.
 - overlay. Se usa para cluster de swarm donde se requiere que cada nodo del cluster puedan verse y administrar la alta disponibilidad.
 - none. No tiene conexión de red
-
-##Creación de redes
+  
+## Creación de redes
 #Comando para crear una red con un nombre y el driver por defecto: 
 `docker network create test_red`
 
-#Comando para crear una red con un nombre y especifico el tipo de red o driver necesario: 
+# Comando para crear una red con un nombre y especifico el tipo de red o driver necesario: 
 `docker network create -d bridge --subnet 10.11.0.0/24 --gateway 10.11.0.1 test_red`
 
-#Comando para ejecutar un contenedor en la red creada
+# Comando para ejecutar un contenedor en la red creada
 
 Crear 3 contenedores, 2 de ellos a una red creada y el otro a una segunda red creada
 `docker run --network test_red -d --name test1 -it centos`
@@ -44,32 +44,32 @@ Crear 3 contenedores, 2 de ellos a una red creada y el otro a una segunda red cr
 `docker run --network mired -d --name linux2 -it ubuntu /bin/bash`
 
 
-#Ejecutar pruebas de conectividad entre contenedores de la misma red, con contenedores de otra red, docker 
+# Ejecutar pruebas de conectividad entre contenedores de la misma red, con contenedores de otra red, docker 
 `docker exec linux2 bash -c "ping  <ip o host>"`
 `docker exec centos bash -c "ping  <ip o host>` 
 Nota, cuando creamos una red se puede hacer ping usando el nombre del host a mas de la ip
 
-#Comando para conectar un contenedor creado a una red creada
+# Comando para conectar un contenedor creado a una red creada
 `docker network connect <nombre_red> <nombre del host>`
 Pueden practicar creando un contenedor sin especificar la red y luego adjuntandola a una red
 con docker network disconnect se lo puede desconectar
 `docker network disconnect <nombre_red> <nombre del host>`
 
-##Comando para remover una red
+## Comando para remover una red
 `docker network rm test_red`
 pero para proceder con la eliminación no debe haber ningún contenedor pegado a esa red
 Eliminemos las redes creada 
 
-##Dar un ip estática a un contenedor
+## Dar un ip estática a un contenedor
 al crear el contenedor y despues de especificar la red con la opción --ip <ip> se puede asignar estáticamente su direccionamiento
 `docker run --network test_red --ip <ip_estatica> -d --name test1 -it centos`
 
 
 
-#PComando para ver las opciones usamos la opción --help 
+# PComando para ver las opciones usamos la opción --help 
 `docker network create --help`
 
-##Crear un contenedor con el tipo de red host
+## Crear un contenedor con el tipo de red host
 `docker run --network host  -d --name test1 -it centos`
 
 Validar que ip nos da con docker inspect y comparar cos la ip del docker host
