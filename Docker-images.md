@@ -46,7 +46,7 @@ RUN apt update -y
 RUN apt -y install nginx
 ~~~
 
-##Construir la imagen a partir del Dockerfile
+### Construir la imagen a partir del Dockerfile
 docker build es el comando para construir imágenes a partir de un docker file. 
 
 `docker build .` 
@@ -54,6 +54,7 @@ docker build es el comando para construir imágenes a partir de un docker file.
 El punto representa el directorio donde estoy y en donde está el DockerFile, puede estar un path o una url
 
 `docker image ls`
+
 `docker build -t mi_httpd:1.0 .`
 
 
@@ -67,7 +68,7 @@ Por eso al intentar ejecutarla va a dar un exit. Esto es porque un contenedor no
 Si el servicio web falla y se interrumpe entonces el contenedor hace un exit. 
 
 
-## CMD
+### CMD
 Entonces quien define el proceso o tarea que va a correr en contenedor? 
 Eso se especifica en el docker file con la instrucción CMD. Un contenedor debe tener un CMD para arrancar en primer plano.
 Formas de ejecutar CMD
@@ -82,14 +83,14 @@ Editar el Dockerfile y añadir la siguiente linea
 
 
 
-## Etiquetado de imágenes
+### Etiquetado de imágenes
 Nos ayuda a dar un nombre y a versionar nuestra imágenes (control de versiones)
 
  `docker tag <nombre_actual_imagen> <muevo_tag>`
 
 Es una buena práctica ir etiquetando las imágenes con latest para la última versión de nuestra aplicación. Así sabemos cuando está correiendo la última versión
 
-## ENTRYPOINT
+### ENTRYPOINT
 Su funcionamiento es similar a CMD, es decir me sirve para ejecutar un proceso, tarea o servicio en primer plano y que ejecute junto al contenedor. Con la diferencia es que espera un parámetro como argumento para completar su ejecución. Este parámetro puede ser ingresado junto a la linea de comandos cuando ejecuto el docker o en el Docker file usando CMD
 
 
@@ -115,7 +116,7 @@ ENTRYPOINT ["sleep"]
 CMD ["5"]
 ~~~
 
-## COMANDO RUN 
+### COMANDO RUN 
 
 RUN comando arg1 arg2
 RUN ["comando", "arg1","arg2"]
@@ -125,15 +126,16 @@ La imagen confirmada resultante se usará para el siguiente paso en el Dockerfil
 Con el comando RUN ejecutamos una instrucción en el proceso de construcción de la imagen (No en la ejecución del contenedor). Esta diferencia hace que sea el comando para ir modificando la capa inicial e ir creando nuestra propia imagen.
 Generalmente es usado para instalar software dentro a una imagen base
 
-## COPY/ADD 
+### COPY/ADD 
 
 COPY \[--chown=<user>:<group>\] \<src\>... \<dest\>
-COPY \[--chown=<user>:<group>\] \["<src>",... "<dest>"\]
+
+COPY \[--chown=<user>:<group>\] \["\<src\>",... "\<dest\>"\]
 
 La instrucción COPY copia nuevos archivos  y directorios desde un fuente origen  al filesystem de la imagen en el path establecido en el parametro <dest>.
 
-ADD [--chown=<user>:<group>] <src>... <dest>
-ADD [--chown=<user>:<group>] ["<src>",... "<dest>"]
+ADD \[--chown=<user>:<group>\] \<src\>... \<dest\>
+ADD \[--chown=<user>:<group>\] \["\<src\>",... "\<dest\>"\]
 
 La instrucción  ADD copia nuevos archivos (locales o remotos) y directorios desde un fuente origen o URL al filesystem de la imagen en el path establecido en el parametro <dest>.
 
@@ -141,27 +143,30 @@ La principal diferencia entre COPY y ADD es que esta última permite copiar desd
 
 El uso mas frecuente es copiar librerías, código fuente o cualquier información necesaria que el contenedor lo tenga.
 
-##ENV (Definir variable de entorno a la imagen)
-La instrucción ENV setea variables de entorno <key> a un valor <value>, estas variables y sus valores podrán ser usadas en la siguientes instrucciones y podrán ser renombradas en cualquier momento  
+### ENV (Definir variable de entorno a la imagen)
+La instrucción ENV setea variables de entorno \<key\> a un valor \<value\>, estas variables y sus valores podrán ser usadas en la siguientes instrucciones y podrán ser renombradas en cualquier momento  
 
 Ejemplos: Se puede usar comilla, sin comillas 
 
 `ENV MY_NAME="John Doe"`
+
 `ENV MY_DOG=Rex\ The\ Dog`
+
 `ENV MY_CAT=fluffy`
 
 O en una sola linea setear  varias variables
+
 `ENV MY_NAME="John Doe" MY_DOG=Rex\ The\ Dog  MY_CAT=fluffy`
 
 Las variables de entorno seteadas con ENV persisten cuando el contenedor se ejecuta. Se puede ver el valor de estas variables usando un docker inspect y cambiar su valor en la ejecución con --env <KEY>=<VALUE> 
-The environment variables set using ENV will persist when a container is run from the resulting image. You can view the values using docker inspect, and change them using docker run --env <key>=<value>.
+The environment variables set using ENV will persist when a container is run from the resulting image. You can view the values using docker inspect, and change them using docker run --env \<key\>=\<value\>
 
 Si se requiere una varible de entorno solo durante la construcción de la imagen se podría usar con la instrucción ARG
 
-#ARG
-ARG <name>[=<default value>]
+### ARG
+ARG \<name\>\[=\<default value\>\]
 
-La instrucción ARG define variables que los usuarios puede pasar como parámetros en el momento de ejecutar el docker build usando la opción --build-arg <varname>=<valor>
+La instrucción ARG define variables que los usuarios puede pasar como parámetros en el momento de ejecutar el docker build usando la opción --build-arg \<varname\>=\<valor\>
 
 ARG usuario=jhony
 
@@ -170,35 +175,40 @@ ARG usuario=jhony
 Si durante la construcción de la imagen no se especifica un valor a la variable usuario, por defecto usa el valos seteado en el Dockerfile
 
 
-##WORKDIR
+### WORKDIR
 Establece el directorio de trabajo dentro de la imagen
 
 
 
-#EXPOSE 
+### EXPOSE 
 EXPOSE 8080/[PROTOCOL]
 
 La instrucción EXPOSE especifica los puertos en los que va a esuchar el contenedor cuando se ejecute.
 Por defecto se soncifura perto tcp pero se puede indicar explicitamente entre TCP/UDP
 
-##LABEL 
-LABEL <key>=valor <key>=<valor>
+### LABEL 
+LABEL \<key\>=valor \<key\>=\<valor\>
 La instrucción LABEL se usa para añadir etiquetas/metadatos a la imagen del contenedor 
 Ejemplos de uso
 
+~~~
 LABEL vendor="ACME Incorporated"
+
 LABEL app="foo"
+
 LABEL version="1.0"
+
+
 LABEL description="This text illustrates \
 that label-values can span multiple lines."
+~~~
 
-##VOLUME (Manejo de volumenes)
+### VOLUME (Manejo de volumenes)
 Se puede agregar un volume anonimo desde la creación del dockerfile. VOLUME solo requiere un parámetro que es la ubicación del punto de montaje dentro del contenedor. En el docker host se crea el volume en la ubicación configurada por defecto para los volumenes, por defecto: /var/lib/docker/volumes/ 
 
 
-## CMD
+### CMD
 El comando CMD permite setear el comando por defecto y/o los parámetros que se ejecutaran cuando se corra el contenedor sin especificar ningún comando. Puede ser sobreescrito cuando se ejecute el contenedor desde la linea de comandos.
-
 
 Una imagen debe tener un CMD para que el contenedor quede vivo despues de ejecutarlo
 El objetivo principal de un CMD es proporcionar valores predeterminados para un contenedor en ejecución
