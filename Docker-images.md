@@ -127,8 +127,8 @@ Generalmente es usado para instalar software dentro a una imagen base
 
 ## COPY/ADD 
 
-COPY \[--chown=<user>:<group>\] \\<src\\>... <dest>
-COPY [--chown=<user>:<group>] ["<src>",... "<dest>"]
+COPY \[--chown=<user>:<group>\] \<src\>... \<dest\>
+COPY \[--chown=<user>:<group>\] \["<src>",... "<dest>"\]
 
 La instrucción COPY copia nuevos archivos  y directorios desde un fuente origen  al filesystem de la imagen en el path establecido en el parametro <dest>.
 
