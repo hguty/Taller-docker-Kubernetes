@@ -12,4 +12,41 @@ Kubernetes ofrece un entorno de administración centrado en contenedores. Kubern
 Containers are a good way to bundle and run your applications. Para entornos de producción, se necesita administrar los contenedores que ejecutan las aplicaciones y aseguran alta disponibilidad. Por ejemplo,  si un contenedor cae, otro inmediatamente se inicia
 
 CONTENIDO:
-- 
+
+3.	Kubernetes
+    3.1.	Conceptos básicos (4 horas)
+        i	Arquitectura del cluster kubernetes
+        ii	Contenedores
+        iii PODs
+        iv	Replicaset
+        v	Deploys
+        vi	Services
+        vii Namespaces
+        viii DaemonSet
+
+    3.2.	Gestión del ciclo de vida de las aplicaciones (3 horas)
+        i	Introducción
+        ii	RollingUp and Rollback
+        iii	Comandos y argumentos en docker
+        iv	Comandos y argumentos en kubernetes
+        v	Variables de entorno
+        vi	Config maps
+        vii	Secrets
+
+3.	Storage (2 horas)
+        i	Introducción
+        ii	Volumes
+        iii	Persistent volumes
+        iv	Persistent volumes Claims PVC
+        v	Pods y PVC
+
+4.	Networking (2 horas)
+        i Introducción
+        ii	
+5.	Scheduling (2 horas)
+        i	Introducción
+        ii	Manual scheduling
+        iii	Labels selectors
+        iv	Taints y tolerances
+        v	Node selector, node afnity
+        vi	Resources y Limits
