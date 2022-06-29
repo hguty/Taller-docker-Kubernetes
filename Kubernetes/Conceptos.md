@@ -4,4 +4,4 @@ nodo: worker node
 Master: Control plane
 
 
-![Arquitectura kubernetes] (https://github.com/hguty/Taller-docker-Kubernetes/blob/main/Kubernetes/img/components-of-kubernetes.svg) 
+![Arquitectura kubernetes] (https://github.com/hguty/Taller-docker-Kubernetes/blob/main/Kubernetes/img/arqkub.jpg) 
