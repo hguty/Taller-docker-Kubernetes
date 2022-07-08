@@ -16,7 +16,7 @@ Validar los parametros de red del contenedor y comparar el direccionamiento ip c
 Cuando creo un contenedor por defecto se crean con el tipo de red Bridge
 Todos los conetenedores creados con el tipo bridge se va a poder ver entre si y al host a través de la interface de docker
 
-##Nota importante: En la red de tipo bridge se pueden ver con la ip mas no con el nombre 
+### Nota importante: En la red de tipo bridge se pueden ver con la ip mas no con el nombre 
 
 `docker network ls` ejecutar las redes existentes
 
@@ -29,7 +29,7 @@ En Docker vamos a encontrar algunos drivers o tipos de redes:
 - bridge, Es una red privada interna creada por el docker host, es la red por defecto que traer todos los dockers. Se pueden comunicar entre contenedores y con el docker host. Cuando queremos alcanzar a este host desde fuera del docker host tendré que hacerlo publicando puertos y mapenadolos con los puertos del docker host.
 - host. El contenedor usa la configuración de red del docker host. 
 - ipvlan. Este driver da un control completo del direccionaniento IP, tanto IPv4 como IPV6. El contenedor puede obtener el direccionamiento de nuestra red local. Es decir el DHCP de la compañía le entrega la IP.
-- mscvlan. es muy similar a ipvlan con la diferencia que cada cotenedor se le asigna una mac adres diferente.
+- mscvlan. es muy similar a ipvlan con la diferencia que cada cotenedor se le asigna una mac adress diferente.
 - overlay. Se usa para cluster de swarm donde se requiere que cada nodo del cluster puedan verse y administrar la alta disponibilidad.
 - none. No tiene conexión de red
   
