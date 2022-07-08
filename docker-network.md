@@ -40,7 +40,7 @@ En Docker vamos a encontrar algunos drivers o tipos de redes:
 
 ### Comando para crear una red con un nombre y especifico el tipo de red o driver necesario: 
 
-`docker network create -d bridge --subnet 10.11.0.0/24 --gateway 10.11.0.1 test_red`
+`docker network create -d bridge --subnet 10.11.0.0/24 --gateway 10.11.0.1 mired`
 
 ### Comando para ejecutar un contenedor en la red creada
 
@@ -50,7 +50,7 @@ Crear 3 contenedores, 2 de ellos a una red creada y el otro a una segunda red cr
 
 `docker run -dit ubuntu /bin/bash`
 
-`docker run --network mired -d --name linux2 -it ubuntu /bin/bash`
+`docker run --network mired -d --name linux2 -it centos /bin/bash`
 
 
 ### Ejecutar pruebas de conectividad entre contenedores de la misma red, con contenedores de otra red, docker 
