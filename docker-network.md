@@ -16,7 +16,7 @@ Validar los parametros de red del contenedor y comparar el direccionamiento ip c
 Cuando creo un contenedor por defecto se crean con el tipo de red Bridge
 Todos los conetenedores creados con el tipo bridge se va a poder ver entre si y al host a través de la interface de docker
 
-### Nota importante: En la red de tipo bridge se pueden ver con la ip mas no con el nombre 
+Nota importante: En la red de tipo bridge se pueden ver con la ip mas no con el nombre 
 
 `docker network ls` ejecutar las redes existentes
 
@@ -97,5 +97,3 @@ Probar con las redes:
  - ipvlan
  - macvlan
 
-
-`docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Datos.123 -d mysql:latest`
