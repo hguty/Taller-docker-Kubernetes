@@ -8,14 +8,18 @@ En una terminal digitemos: `ifconfig` o `ip a`
 Veremos una interface con nombre docker, todos los conetenedores creados  por defecto usan esta red para comunicarse con el host.
 
 `docker run -d nginx` 
+
 `docker inspect nginx`
 
 Validar los parametros de red del contenedor y comparar el direccionamiento ip con la interface de red del SO
 
 Cuando creo un contenedor por defecto se crean con el tipo de red Bridge
 Todos los conetenedores creados con el tipo bridge se va a poder ver entre si y al host a través de la interface de docker
+
 ##Nota importante: En la red de tipo bridge se pueden ver con la ip mas no con el nombre 
+
 `docker network ls` ejecutar las redes existentes
+
 `docker network inspect bridge` mostrará las propiedades de la red bridge
 
 
@@ -55,31 +59,40 @@ Crear 3 contenedores, 2 de ellos a una red creada y el otro a una segunda red cr
 Nota, cuando creamos una red se puede hacer ping usando el nombre del host a mas de la ip
 
 ### Comando para conectar un contenedor creado a una red creada
+
 `docker network connect <nombre_red> <nombre del host>`
+
 Pueden practicar creando un contenedor sin especificar la red y luego adjuntandola a una red
 con docker network disconnect se lo puede desconectar
+
 `docker network disconnect <nombre_red> <nombre del host>`
 
 ### Comando para remover una red
+
 `docker network rm test_red`
+
 pero para proceder con la eliminación no debe haber ningún contenedor pegado a esa red
 Eliminemos las redes creada 
 
 ### Dar un ip estática a un contenedor
 al crear el contenedor y despues de especificar la red con la opción --ip <ip> se puede asignar estáticamente su direccionamiento
+  
 `docker run --network test_red --ip <ip_estatica> -d --name test1 -it centos`
 
 
 
 ### PComando para ver las opciones usamos la opción --help 
-`docker network create --help`
+
+  `docker network create --help`
 
 ### Crear un contenedor con el tipo de red host
+  
 `docker run --network host  -d --name test1 -it centos`
 
 Validar que ip nos da con docker inspect y comparar cos la ip del docker host
 
 Probar con las redes:
+  
  - none
  - ipvlan
  - macvlan
