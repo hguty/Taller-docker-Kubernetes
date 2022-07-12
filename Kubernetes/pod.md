@@ -18,7 +18,7 @@ metadata:
   name: nginx
 spec:
   containers:
-  - name: webserver1
+  - name: webserver
     image: nginx:latest
     ports:
     - containerPort: 80
