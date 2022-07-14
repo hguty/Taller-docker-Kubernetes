@@ -89,7 +89,7 @@ CMD ["comando", "arg1", "arg2"]
 ~~~
 
 Editar el Dockerfile y añadir la siguiente linea
-`CMD systemctl start nginx.service`
+`CMD nginx -g 'daemon off;'`
 
 
 
