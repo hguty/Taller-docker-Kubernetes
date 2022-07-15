@@ -1,5 +1,5 @@
 # Docker compose
-##Introducción
+## Introducción
 Es una herramienta de docker que nos ayuda a definir y crear aplicaciones multicontenedor.
 Automatiza el proceso de creación de contenedores.
 
@@ -21,10 +21,10 @@ Con docker compose podemos unir todos los comando en un solo archivo
 
 Previa instalación del repositorio de Docker, ejecutar los comandos:
 
-	~~~
+~~~
     sudo apt-get update
-	sudo apt-get install docker-compose-plugin
-    ~~~
+    sudo apt-get install docker-compose-plugin
+~~~
 
 ## Usando Docker compose
 
@@ -44,3 +44,4 @@ volumes y network son opcionales depende de su necesidad
 
 - version con esta opción indicamos debemos indicar la versión que usaremos para docker-compose. Actualmente tenemos la versión 3.9
 - services: Esta sección 
+
