@@ -19,14 +19,18 @@ para permitir un registry de red local debemos añadir la ip del servidor en la 
 
 Modificar el archivo /etc/docker/daemon.json en los equipos que quieran hacer uso del repositorio local
 
-insecure-registries": ["127.0.0.1"]
+*insecure-registries": ["127.0.0.1"]*
+
 por
-insecure-registries": ["127.0.0.1", "<ip_server>:<port>"]
+
+*insecure-registries": ["127.0.0.1", "<ip_server>:<port>"]*
 
 en otras distribuciones el archivo de configuración lo pueden encontrar en /lib/systemd/system/docker.service
 
 ExecStart=/usr/bin/dockerd 
-añadir 
+
+  añadir 
+
 ExecStart=/usr/bin/dockerd --insecure-registry <ip>:<port>
 
 Finalmente reiniciar el dockerd
