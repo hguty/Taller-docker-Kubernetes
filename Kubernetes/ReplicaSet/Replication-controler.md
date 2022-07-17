@@ -19,7 +19,7 @@ La creación de un replication controler sigue el mismo patrón del manifest de 
 
 La sección de spec tendrá los parámetros necesario para este tipo de objetos:
 
-![Replication controler secciones](../img/rc-controler.gif)
+![Replication controler secciones](../img/rc-controler-1.gif)
 
 ## Replica set
 
