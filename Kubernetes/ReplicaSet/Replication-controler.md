@@ -9,17 +9,17 @@ Incluso si quieramos tener un solo pod ejecutandose necesitamos un replication c
 
 Los replication controlers también nos ayudarán a ir creando varias instancias de un pod cuando se incremente la carga a la aplicación es decir son necesarios para hacer un balanceo de carga y escalado de cargas de trabajo. Si importar con cuentos nodos trabaje mi cluster el replication controler irá asignando un pod en algún nod disponible del cluster, como se puede ver en la siguiente figura.
 
-![load balancing and scaling](img/loadb.jpg)
+![load balancing and scaling](../img/loadb.jpg)
 
 ### Creación de replication controler
 
 La creación de un replication controler sigue el mismo patrón del manifest de todo objeto en kubernetes:
 
-![Replication controler secciones](rc-seccion.jpg)
+![Replication controler secciones](../img/rc-seccion.jpg)
 
 La sección de spec tendrá los parámetros necesario para este tipo de objetos:
 
-![Replication controler secciones](prueba.gif)
+![Replication controler secciones](../img/prueba.gif)
 
 ## Replica set
 
