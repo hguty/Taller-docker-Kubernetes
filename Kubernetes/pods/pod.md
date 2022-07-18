@@ -25,14 +25,14 @@ spec:
 ~~~
 
 Analizando el contendio del archivo
-![Seccion yaml](img/seccion_yaml_file.jpg)
+![Seccion yaml](../img/seccion_yaml_file.jpg)
 
 Está sección de la imagen muestra los campos comunes que tendrán todos los objetos en kubernetes.  
 ApiVersion. es la instrucción que especifica la versión del api de kubernetes usado para crear este objeto
 kind. Es el tipo de objeto (pod, deploy, replicaset, daemonset, service. etc)
 metadata: Datos que permiten identificar al objeto, como su nombre, namespace, ambiente, autor, ect
 
-![spec de pod](img/spec_pod.jpg)
+![spec de pod](../img/spec_pod.jpg)
 
 La siguientes sección es spec, en donde se indíca las especificaciones técnicas del objeto. Cada objeto tendrá sus propios parámetros e instrucciones. Siempre se revisa la docuemntación oficial de los objetos en kubernetes.
 

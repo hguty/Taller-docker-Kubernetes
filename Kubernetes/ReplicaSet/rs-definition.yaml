@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs
+  labels:
+     app: movilapp
+     tipo: front-end
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: nginx
+          ports:
+            - containerPort: 80
+  selector:
+    matchLabels:
+      app: movilapp

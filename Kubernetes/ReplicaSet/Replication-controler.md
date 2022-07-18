@@ -17,10 +17,43 @@ La creación de un replication controler sigue el mismo patrón del manifest de 
 
 ![Replication controler secciones](../img/rc-seccion.jpg)
 
-La sección de spec tendrá los parámetros necesario para este tipo de objetos:
+La sección de spec tendrá los parámetros necesario para este tipo de objetos. 
+
+El parámetro requerido es template para indicar que tipo de pod se creará con el replication controller. Dentro del campo template irá la misma especificación como si se creará un pod. Se muestra en la siguiente figura:
 
 ![Replication controler secciones](../img/rc-controler-1.gif)
 
-## Replica set
+Se completa la sección spec del replication controler con la propiedad *replicas* que indica  cuantos pods se ejecutarn en paralelo
 
-Este es el nuevo objeto de kubernetes que tiene la misma función de replication controler, actualmente es la opción recomendada para la gestión de réplicas.
+Un manifisto completo de RC con 3 réplicas de pod que contiene el contenedor de nginx quedaría así:
+
+~~~yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp
+  labels:
+     app: myapp
+     tipo: front-end
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: myapp
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: <Image>
+          ports:
+            - containerPort: <Port>
+~~~
+
+Note la estructura del manifiesto:
+Dos secciones de *metadata* (una para los datos del Replication controller y otra para los datos del pod).
+Dos secciones de spec (Una para las propiedades de RC y otra para loas propiedades del pod).
+
+La ejecución del RC sería similar a lo visto aneriormente, esto es:
+
+`kubectl apply -f rc-definition.yaml`
