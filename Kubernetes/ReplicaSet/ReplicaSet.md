@@ -1,4 +1,4 @@
-## Replica set
+# Replica set
 
 Este es el nuevo objeto de kubernetes que tiene la misma función de replication controler. El objetivo de rs es mantener un conjunto estable de réplicas de Pods ejecutándose en todo momento. Así, se usa en numerosas ocasiones para garantizar la disponibilidad de un número específico de Pods idénticos. Actualmente es la opción recomendada para la gestión de réplicas.
 
@@ -37,7 +37,6 @@ Este campo hace posible que pods en ejecución forme parte del rs. Cuando no hay
 
 Una plantilla pod especificando los datos de los nuevos Pods que debería crear para conseguir el número de réplicas esperado. Un ReplicaSet alcanza entonces su propósito mediante la creación y eliminación de los Pods que sea necesario para alcanzar el número esperado (**replicas**). Cuando un ReplicaSet necesita crear nuevos Pods, utiliza su plantilla Pod.
 
-
 ## Scale en replicaset
 
 Modificar el manifiesto del rs y poner la cantidad de réplicas requeridas, despues ejecutar el comando:
@@ -52,9 +51,34 @@ tambien se puede ejecutar el mismo comando pero en lugar del nombre del archivo 
 
 `kubectl scale --replicas=6 replicaset myapp-rs`
 
-## eliminar un replicaset
+## Ver el estado de replicaset
+
+Al igual que todos los objetos de kubernetes, podemos ver el estado de rs con el comando:
+
+`kubectl get replicaset`
+
+o con su abreviación rs
+
+`kubectl get rs`
+
+La salida de este comando es similar a lo siguiente:
+
+![rs output](../img/get_rs_output.jpg)
+
+NAME: Nombre de replication set
+DESIRE: Cantidad de pod deseados
+CURRENT: estado actual de pods.
+READY: Pods listos y ejecutandose
+AGE: el tiempo desde el cual fue creado el rs
+
+## Eliminar un replicaset
 
 Para elimminar un rs junto con todos los pods usamos el comando:
 
 `kubectl delete replicaset myapp-rs`
 
+Se puede eliminar un rs sin eliminar sus pods con la bandera `--cascade=false`
+
+`kubectl delete replicaset myapp-rs --cascade=false`
+
+*Nota: --cascade=false está deprecado, en su lugar podemos usar --cascade=orphan*

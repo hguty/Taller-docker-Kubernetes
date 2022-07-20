@@ -1,7 +1,7 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
-  name: myapp-rs
+  name: myapp-deploy
   labels:
      app: movilapp
      tipo: front-end
@@ -9,7 +9,7 @@ spec:
   replicas: 3
   template:
     metadata:
-      name: myapp
+      name: myapp-pod
       labels:
         app: movilapp
     spec:
