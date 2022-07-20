@@ -32,7 +32,7 @@ Evalua la capacidad y los recursos de cada nodo para decidir a cual de ellos env
 
 scheduler es solo responsable de decidir cada pod en que nodo debe ejecutarse, en base a algunas reglas definidaspor el usuario. Por ejemplo ciertos nodos pueden estar dedicados a ciertas aplicaciones, o dependiendo de la capacidad de recursos disponibles en cada nodo.
 
-![Scheduler](img/scheduler.png)
+![Scheduler](../img/../Kubernetes/img/scheduler.jpg)
 
 Hay varios temas a considerar para decidir la ubicación de un pod, veremos conceptos como:
 
