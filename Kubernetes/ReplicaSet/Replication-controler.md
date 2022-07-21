@@ -23,7 +23,7 @@ El parámetro requerido es template para indicar que tipo de pod se creará con 
 
 ![Replication controler secciones](../img/rc-controler-1.gif)
 
-Se completa la sección spec del replication controler con la propiedad *replicas* que indica  cuantos pods se ejecutarn en paralelo
+Se completa la sección spec del replication controler con la propiedad *replicas* que indica  cuantos pods se ejecutan en paralelo
 
 Un manifisto completo de RC con 3 réplicas de pod que contiene el contenedor de nginx quedaría así:
 
