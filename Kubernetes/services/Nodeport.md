@@ -8,8 +8,8 @@ Se crea una esquema de red similar al que se muestra a continuación:
 
 Con un servicio de tipo nodeport se debe declarar 3 puertos:
 
-- targetport: El puerto de escucha del pod, este campo es opcional y si no se especifica el puerto asume que es el mismo puerto del campo port. 
-- port: Es único puerto obligatorio que se debe llenar en el manifiesto y especifica el puerto sbre el cual escuchará el servicio.
+- targetport: El puerto de escucha del pod, este campo es opcional y si no se especifica el puerto asume que es el mismo puerto del campo port.
+- port: Es único puerto obligatorio que se debe llenar en el manifiesto y especifica el puerto sobre el cual escuchará el servicio.
 - nodeport: El puerto que abriremos en el nodo, debe ser un número entre 30000 y 32700. Si no se espcifica este canpo k8s asigna randómicamente el puerto en el rago indicado.
 
 

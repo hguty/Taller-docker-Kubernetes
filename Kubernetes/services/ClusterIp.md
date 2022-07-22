@@ -39,9 +39,13 @@ La salida de este comando son los campos
 
 NAME: Nombre del cluster, que sale del metadatos del archivo de manifiesto
 TYPE: El tipo de servicio, em este ejemplo cluster ip
+
 CLUSTER-IP. La ip que le asigna el cluster a este servicio. Siempre será una dirección privada
+
 EXTERNAL-IP. Es la ip externa como se puede llegar al cluster pero en nuestro caso al ser un cluster ip este solo se accede desde dentro del cluster
+
 PORT: Puerto de escucha del servicio
+
 AGE. El tiempo que esta vivo el servicio
 
 Para probar la correcta funcionalidad del servicio podemos, desde un nodo del cluster hacer un telnet al puerto 8080 o la instrucción:
@@ -50,3 +54,8 @@ Para probar la correcta funcionalidad del servicio podemos, desde un nodo del cl
 
 Deberíamos ver por terminal el html del index de nginx.
 
+## Asignar una ip al clusterip
+
+Si no se especifica ningún parámetro en la creación de servicio ClusterIp el sistema asignará uno de manera automática.
+
+Si se desea asignar un ip se debe usar el campo `ClusterIP: <ip_asignada>`

@@ -6,6 +6,8 @@ Entonces un servicio de tipo loadbalancer provee una entrada única al cluster a
 
 Sin embargo para propósitos de prueba del funcionamiento se creará un servicio con el tipo loadbalancer.
 
+![Load Balncer](../img/loadbalancer.png)
+
 ~~~yaml
 apiVersion: v1
 kind: Service
