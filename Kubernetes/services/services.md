@@ -1,5 +1,7 @@
 # Services
 
+Un problema que se tiene con el conceptos de pods, es que estos es efímeros, esto es que pueden desaparecer en cualquier momento y otro ocupará su lugar. Con esto perdemos la referencia y la manera de comunicarnos con el pod. Entonces la ip de cada pod no puede ser su identificar o la menera de encontrarlos. Ahí interviene el concepto de servicios.
+
 El objeto ***service*** de kubernetes permitirá la comunicación entre varios componente dentro y fuera de la aplicación.
 
 El objeto Service ayuda a mantener conectadas las aplicaciones entre si y el acceso para los usuarios. 

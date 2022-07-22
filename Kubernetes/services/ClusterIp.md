@@ -48,4 +48,5 @@ Para probar la correcta funcionalidad del servicio podemos, desde un nodo del cl
 
 `curl <cluster-ip:8080>`
 
-Deberíamos ver por terminal el html del index de nginx
+Deberíamos ver por terminal el html del index de nginx.
+
