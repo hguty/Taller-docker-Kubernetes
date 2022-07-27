@@ -1,7 +1,18 @@
-# Actualizar un deployment (roll out)
+# Rolling Update y Rollbacks (Deployment)
 
-Un rollout es la actualización de un deploy y este se llevará a cabo cuando se modifica los campos de template del pod.
-Otro cambio como escalado no conlleva una actualización del deploy o roll out.
+Rolling update en kubernetes es una característica de un deploy que permite actualizar la versión de una imagen con zero tiempo de downtime.
+
+Siempre que es la actualización de un deploy y este se llevará a cabo cuando se modifica los campos de template del pod. Otro cambio como escalado no conlleva una actualización del deploy o roll out.
+
+Por defecto durante una actualización la cantidad mínima de pods no disponibles es 1.
+
+La función de Rolling update nos permite:
+
+- Actualizar la versión de una aplicación monificando la imágen de los contenedores.
+- Hacer un rollback de a aplicación si encontra un error en la nueva versión.
+- No permite hacer Continuous Integration and Continuous Delivery con cero donwtime.
+
+![Rollingup](../img/rollingup.jpg)
 
 Para actualizar la imagen de un template de un deploy ejecutamos el comando:
 
@@ -18,7 +29,6 @@ Una tercera alternativa es editar el archivo de manifiesto y aplicar los cambios
 Una vez aplicado el cambio con cualquiera de las alternativas indicadas podemos ver el proceso del cambio con el comando:
 
 `kubectl rollout status deployment/miapp-deploy`
-
 
 ## Rollback
 
@@ -38,6 +48,9 @@ Hacer un rollback a la revisión necesaria
 
 Hacer un rollback a revisión anterior
 `kubectl rollout undo deployment/myapp-deploy`
+
+Se puede cambiar la cantidad de revisiones que guarda el deployment.
+Dentro de spec usamos el campo: `revisionHistoryLimit (integer)`
 
 ## Escalado de un deploy
 
