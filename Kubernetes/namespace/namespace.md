@@ -91,4 +91,3 @@ Esto podría resultar molestoso cuando queremos trabajar en otro namespace, para
 
 `kubectl config set-context --current --namespace=espacio1`
 espacio1 es el nombre del namespace creado.
-
