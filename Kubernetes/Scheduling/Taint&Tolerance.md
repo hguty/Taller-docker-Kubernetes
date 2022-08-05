@@ -59,14 +59,14 @@ Ahora crearemos un pod con tolerancia al tain que acabamos de crear:
     labels:
         env: test
     spec:
-    containers:
-    - name: nginx
+      containers:
+       - name: nginx
         image: nginx
-    tolerations:
-    - key: "app"
-        operator: "Equal"
-        value: "webapp"
-        effect: "NoSchedule"
+      tolerations:
+       - key: "app"
+         operator: "Equal"
+         value: "webapp"
+         effect: "NoSchedule"
     ~~~
 
 ## Notas importantes
