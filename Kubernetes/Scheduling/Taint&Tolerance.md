@@ -55,8 +55,8 @@ Ahora crearemos un pod con tolerancia al tain que acabamos de crear:
     apiVersion: v1
     kind: Pod
     metadata:
-    name: nginx
-    labels:
+      name: nginx
+      labels:
         env: test
     spec:
       containers:
