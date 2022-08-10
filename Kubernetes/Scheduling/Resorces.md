@@ -37,8 +37,8 @@ spec:
     - containerPort: 80
     resources:  #Parámetro que indica las sección de recursos
        requests:  #Dentro de los recursos es el parámetro para indicar los recursos    requeridos
-       memory: "1G"
-       cpu: 0.8 
+         memory: "1G"
+         cpu: 0.8 
 ~~~
 
 Este manifiesto asegura para el nuevo pod 1 GB de memoria y 800 miliCPU; el scheduler buscará un pod que tenga estos recursos mínimos requeridos.
