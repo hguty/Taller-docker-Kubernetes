@@ -35,8 +35,8 @@ spec:
     image: nginx:1.14.2
     ports:
     - containerPort: 80
-  resources:  #Parámetro que indica las sección de recursos
-    request:  #Dentro de los recursos es el parámetro para indicar los recursos requeridos
+    resources:  #Parámetro que indica las sección de recursos
+       requests:  #Dentro de los recursos es el parámetro para indicar los recursos    requeridos
        memory: "1G"
        cpu: 0.8 
 ~~~
@@ -49,23 +49,27 @@ Kubernetes no establece un límite por defecto para los recursos, sin embargo es
 
 Para especificar los valores debemos indicar al manifiesto es la sección de resources unos límites para CPU y Memoria, usando las unidades indicadas previamente.
 
+~~~yaml
 apiVersion: v1
 kind: Pod
 metadata:
   name: mynginx
+  labels:
+    aplicacion: miappmovil
+    tipo: movil
 spec:
   containers:
   - name: nginx
     image: nginx:1.14.2
     ports:
-    - containerPort: 80
-    resources:  
-      request:   
-        memory: "1G"
-        cpu: 0.8
-      limits: 
-       memory: "1.5G"
-       cpu: 1.2 
+    - containerPort: 8040
+    resources:
+      requests:
+        memory: "600M"
+        cpu: 0.5
+      limits:
+        memory: "800M"
+        cpu: 0.8 
 ~~~
 
 Si el pod supera el límite establecido el pod puede detenerse, si el pod supera el CPU por periodos cortos de tiempo no se detendrá.
