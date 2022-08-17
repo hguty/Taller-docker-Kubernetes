@@ -14,17 +14,27 @@ y listo
 
 `sudo k3s kubectl get nodes`
 
-Si queremos agregar un nodo worker al cluster, necesitamos el token del nodo master que lo encontrasmos en este path:
 
-*/var/lib/rancher/k3s/server/node-token*
+## Instalación de un nodo worker al cluster 
 
-En el nodo worker ejecutamos el comando
+Hasta el momento se ha trabajando con un cluster de un solo nodo (master node), un cluster de producción de kubernetes va a tener varios nodos workers. Vamos a realizar la instalación y pegarle al cluster de k3s que tenemos en funcionamiento.
 
-`sudo k3s agent --server https://ipserver:6443 --token ${NODE_TOKEN}`
+1. Encontrar el token del nodo master
 
-Nota importante.
-Sería util crear un alias al comando k3s kubectl para usar el comando único kubectl
-`alias kubectl="k3s kubectl"`
+    `cat /var/lib/rancher/k3s/server/node-token`
+
+2. En el nodo worker que queremos atachar al cluster vamos a crear 2 variables de entorno:
+   - K3S_URL que es la dirección ip y puerto del nodo master `k3s_url="https://192.168.1.94:6443"`
+  
+   - K3S_TOKEN que es el token del nodo master `k3s_token="K101b8f68517d06ed0786b49f3afaf8cefc6c35e6c0d11ec716d778eb318c98b330::server:c5324d25197dde5981b7732ee3a30779"`
+
+3. Descargar y ejecutar el script de k3s con los parámetros del paso anterior
+
+    `curl -sfL https://get.k3s.io | K3S_URL=${k3s_url} K3S_TOKEN=${k3s_token} sh -`
+
+4. De regreso al nodo master ejecutamos una consulta de los nodos del cluster
+   `kubectl get nodes`
+
 
 ## Kubectl
 
@@ -36,3 +46,26 @@ Es la herramienta de línea de comandos para la comunicación con el control pla
 - objeto|recurso. Especifica el tipo de recurso que queremos del cual se desea la ejecutar la acción:
 - Nombre recurso: Nombre del recurso
 - parámetros. Dependiendo de la acción cada comando tendrá diferentes parámetros
+
+## Configurar kubelet en el nodo worker para que trabaje con el cluster
+
+Copiar el archivo del nodo master: 
+**/etc/racher/k3s/k3s.yaml** a una ubicación del nodo worker. En este ejemplo lo copiamos a la ubicación:
+**/root/.kube/config**
+
+En el nodo worker editar el archivo k3s.yaml y poner la ip del nodo master. Despues crear la variable de entorno:
+
+export KUBECONFIG=/root/.kube/config
+
+Validar con el comando kubectl get nodes
+
+## Error de certificado entre worker y master
+
+Se podría tener un error en el certidicado para la comunicación entre el worker y el nodo master, si eso ocurre podremos:
+
+Reiniciar el servicio master y el nodo worker para renovar el certificado
+`sudo systemctl restart k3s`
+
+En el worker node:
+
+`reboot`

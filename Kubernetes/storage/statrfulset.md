@@ -15,8 +15,11 @@ Ejemplo de este tipo de aplicaciones son las base de datos. Dado que aunque pued
 
 Los componentes requeridos para crear un StatefulSet:
 
-    - Servicio Headless, se usa para controlar el dominio de red.
-    - Un Objeto StatefulSet, 
+    - Servicio Headless, se usa para que la comunicación sea directa y de manera individual a cada pod. Un cliente de un aplicación statefull debe "conocer" la IP de los pods para saber a que pod hacer un requerimiento.
+    
+![headless kubernetes](../img/headlessservice.jpg)
+
+    - Un Objeto StatefulSet, Un objeto del API de kubernetes que llevará el control de las funciones de statefull 
     - Un volumeClaimTemplate que proporciona almacenamiento estable por medio de PersistentVolumes provisionados por un provisionador de tipo PersistentVolume.
 
 ~~~yaml
