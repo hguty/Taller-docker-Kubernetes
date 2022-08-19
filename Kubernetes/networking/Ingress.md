@@ -1,13 +1,13 @@
 # Ingress
 
-Problemas/retos que tengo para el acceso de mis usuarios a una aplicación hosteada en un cluster de kubernetes:
+Problemas/retos que se tiene para el acceso de los usuarios a una aplicación hosteada en un cluster de kubernetes son:
 
 - En un cluster on-premise no tengo un servicio de tipo loadbalancer
 - En un hosting de nube necesito tantos loadbalancer como aplicaciones quiere desplegra
-- Por cada loadbalancer es una nueva ip pública
+- Por cada loadbalancer es una nueva ip pública, lo que incrementa los costos.
 - La gestión de certificados SSL para la https
   
-Ingress es un objeto del API de kubernetes que gestiona los accesos a los servicios del cluster, generalmente acceso de tipo http y https. En resumen es un objeto que ayuda a que los usuarios finales accedan a las aplicaciones a través de un conjunto de reglas.
+**Ingress** es un objeto del API de kubernetes que gestiona las rutas de accesos a los servicios del cluster, generalmente acceso de tipo http y https. En resumen es un objeto que ayuda a que los usuarios finales accedan a las aplicaciones a través de un conjunto de reglas.
 
 Las funcionalidades que podemos obtener con Ingress son load balancer, SSL y virtual hosting.
 
@@ -17,7 +17,7 @@ Ingress expone HTTP y HTTPS para usuarios finales, mientras se comunica internam
 
 **Ingress resources** son configuraciones y las reglas de routing requeridas para exponer y administrar el ingreso de las solicitudes de usuario.
 
-Un **Ingress controller** son las herramientas responsables del funcionamiento (fulfilling) del Ingress, generalmente con load balancer, a través de la configuración de edge router o frontends adicionales para ayudar a manejar el tráfico.
+Un **Ingress controller** son las herramientas responsables del funcionamiento del Ingress, generalmente con load balancer, a través de la configuración de edge router o frontends adicionales para ayudar a manejar el tráfico.
 
 ![Ingress Controller](../img/IngressControllerexp.png)
 
@@ -27,40 +27,46 @@ Un ejemplo de configuración de Ingress sería:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minimal-ingress
+  name: minimal.ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  ingressClassName: nginx-example
   rules:
   - http:
       paths:
-      - path: /testpath
+      - path: /
         pathType: Prefix
         backend:
-          service:
-            name: test
-            port:
-              number: 80
+           service:
+             name: servicio-clusterip
+             port:
+               number: 8080
+      - path: /web
+        pathType: Prefix
+        backend:
+           service:
+             name: servicio-clusterip2
+             port:
+               number: 8090
+
 ~~~
 
 Se identifica los campos apiVersion, kind, metadata y spec al igual que la mayoría de objetos en kubernetes
 
-El nombre de Ingress debe ser valido para subdominio DNS. 
+El nombre de Ingress debe ser valido para subdominio DNS.
 
 Ingress usan de manera frecuente **annotations** para configurar algunas opciones dependiendo del Ingress controller. Diferentes Ingress contollers soportan diferentes annotatioms, habrá que revisar la documentación dependiendo del Controler que se va a utilizar.
 
-Spec es la sección de la configuración en donde se establecen las características del objeto, y si funcionará como balanceo de carga o reverse procy.
+Spec es la sección de la configuración en donde se establecen las características del objeto, y si funcionará como balanceo de carga o reverse proxy.
+
 Mas importante spec, contiene la reglas de incoming request. Ingress solo soporta reglas de redirección HTTP(s)
 
-## Ingress rules
+Este ingress requiere que se este ejecutando dos servicios:
 
-Cada regla HTTP contiene la siguiente información:
+- servicio-clusterip en el puerto 8080
+- servicio-clusterip2 y e el puerto 8090
 
-- Un host opcional. En el ejemplo, no se ha espcificado este host, 
+Entonces lo que hará el ingres es redigir todo las solicitude / al servicio 1 mientras que las solicitudes a /web redirigirá al segundo servicio.
 
-    An optional host. In this example, no host is specified, so the rule applies to all inbound HTTP traffic through the IP address specified. If a host is provided (for example, foo.bar.com), the rules apply to that host.
-    A list of paths (for example, /testpath), each of which has an associated backend defined with a service.name and a service.port.name or service.port.number. Both the host and path must match the content of an incoming request before the load balancer directs traffic to the referenced Service.
-    A backend is a combination of Service and port names as described in the Service doc or a custom resource backend by way of a CRD. HTTP (and HTTPS) requests to the Ingress that matches the host and path of the rule are sent to the listed backend.
+Con esto tenemos publicado una sola IP pero atendiendo con dos serbicios diferentes.
 
-A defaultBackend is often configured in an Ingress controller to service any requests that do not match a path in the spec.
