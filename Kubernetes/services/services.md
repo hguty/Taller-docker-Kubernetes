@@ -23,7 +23,7 @@ kind: Service
 metadata:
   name: servicio
 spec:
-  type: ClusterIp|NodePort|LoadBalancer
+  type: ClusterIP|NodePort|LoadBalancer
   selector:
     app: MyApp
   ports:
